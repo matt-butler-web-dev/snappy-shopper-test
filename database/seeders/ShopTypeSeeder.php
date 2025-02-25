@@ -15,17 +15,17 @@ class ShopTypeSeeder extends Seeder
     {
         ShopType::create([
             'id' => 1,
-            'name' => 'Takeaway'
+            'type' => 'Takeaway'
         ]);
 
         ShopType::create([
             'id' => 2,
-            'name' => 'Shop'
+            'type' => 'Shop'
         ]);
 
         ShopType::create([
             'id' => 3,
-            'name' => 'Restaurant'
+            'type' => 'Restaurant'
         ]);
     }
 }

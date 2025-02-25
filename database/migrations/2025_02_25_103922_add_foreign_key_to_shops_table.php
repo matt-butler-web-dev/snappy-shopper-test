@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('shops', function (Blueprint $table) {
-            $table->renameColumn('shop_type', 'shop_type_id');
+            $table->renameColumn('store_type', 'shop_type_id');
             $table->unsignedBigInteger('shop_type_id')->nullable()->change();
             $table->foreign('shop_type_id')->references('id')->on('shop_types');
         });

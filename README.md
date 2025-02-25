@@ -3,23 +3,22 @@
 This code covers the required points as outlined in the test document. It has been completed using only 
 API routes, there are no front end pages available to view.
 
-Below contains a list of commands that will help with setup and testing the code.
+Below contains information that will help with the setup and testing the code.
 
 The available API routes with examples of expected data are also listed.
 
-At the end of this I list the areas I would want to improve, add or investigate further if I were to spend
+At the end of file I list the areas I would want to improve, add or investigate further if I were to spend
 additional time on this test.
 
-## Recommended Commands to Run
+## Setting up the test locally
 
-The usual laravel project setup is required to setup the test, but I would like to make sure that
-the following are ran:
-
-php artisan migrate - All my tables have been created via migrations, so this will setup their structure
-
-php artisan db:seed --class=ShopTypeSeeder - I have created a simple seeder to populate the Shop Type
-table with the 3 recommended shop types. As mentioned in my improvements list, I would have liked to have
-created a seeder for Shops too, but felt my time was better spent on other areas.
+ - Clone this repo
+ - composer install
+ - create .env with relevant MySQL Database details to an empty DB
+ - php artisan key:generate
+ - php artisan migrate
+ - php artisan db:seed --class=ShopTypeSeeder
+ - php artisan serve
 
 # Test points
 
@@ -28,6 +27,11 @@ created a seeder for Shops too, but felt my time was better spent on other areas
 I have created a console command as requested to do this. The command is:
 
 php artisan app:import-uk-postcode-data
+
+My current laptop is a Windows machine, so it can have issues with the location of the file missing slashes
+when running the MySQL LOAD DATA LOCAL INFILE, if this the case for you, you can use addslashes() method
+around the storage_path() in ImportUkPostcodeData.php line 77. I have removed this from the repo
+as Linux should process correctly.
 
 ## A controller action to add a new store/shop to the database
 
@@ -63,6 +67,7 @@ I have created a POST API endpoint (/api/availableLocalShops). POST request valu
 
 - Finish the test cases - Due to not doing them before, I built the tests after creating the controller logic, which I now know is the incorrect way to do things if following TDD principles. I stopped at the end of the shop create/destroy tests, but would continue to test the other API end points. I chose to stop there as it would be similar logic to the examples provided and I wanted to use the remaining time elsewhere on the test.
 - Investigate optimisations to the data import process, perhaps using the smaller csv files and getting only the required columns from it
+- There is no real handling of any of the steps failing
 - Adding auth to the API endpoints
 - Investigate rate limiting on API requests
 - More detailed method descriptions with return types/declarations
